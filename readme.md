@@ -108,7 +108,9 @@ The Claim Token is only good for a few minutes, so it is easiest to not set this
 
 ## Running Terraform
 
-Run `terraform apply` and if it is going to do what you expect run `terraform apply`.
+First, make sure you've run `terraform init` on your repo.
+
+Then run `terraform plan` and if it is going to do what you expect run `terraform apply`.
 
 ## After your server is done spinning up
 
