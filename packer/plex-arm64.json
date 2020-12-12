@@ -1,0 +1,38 @@
+{
+    "variables": {
+        "region": "us-east-1"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "profile": "default",
+            "region": "{{user `region`}}",
+            "instance_type": "t4g.micro",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "amzn2-ami-hvm-*-arm64-gp2",
+                    "root-device-type": "ebs"
+                },
+                "owners": [
+                    "amazon"
+                ],
+                "most_recent": true
+            },
+            "ssh_username": "ec2-user",
+            "ami_name": "plex-arm64-20201204",
+            "ami_description": "Amazon Linux Image ARM64 with packages for Plex Media Server",
+            "run_tags": {
+                "Name": "packer-builder-plex",
+                "Tool": "Packer",
+                "Author": "raowbe"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "./plex-arm64.sh"
+        }
+    ]
+}
